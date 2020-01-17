@@ -135,6 +135,31 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  // define an empty output array
+  var theRange = [];
+
+  // if x = y -- base case
+  // if the difference between x and y is 1, 
+  if ((x === y) || (Math.abs(x - y) === 1)) {
+    // return empty array
+    return [];
+  
+  } else {
+  // else the difference between x and y is greater than 1
+    // make a new x variable, make it 1 closer to y
+    var newX;
+    if (x > y) {
+      newX = x - 1;
+    } else {
+      newX = x + 1;
+    }
+    // add new x to result array
+    theRange.push(newX);
+    // get range from new x through y
+    // add those to result array
+    // return result array
+    return theRange.concat(range(newX, y));    
+  }
 };
 
 // 7. Compute the exponent of a number.
