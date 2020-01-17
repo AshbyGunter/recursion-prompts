@@ -52,6 +52,36 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  // if array is empty
+  if (array.length === 0) {
+    // return 0
+    return 0;
+
+  // if array length is 1 and element is an array
+  } else if ((array.length === 1) && (Array.isArray(array[0]))) {
+    // return call to arraySum of the element
+    return arraySum(array[0]);
+
+  // if array length is one and it's a number
+  } else if (array.length === 1) {
+  	// else return the element
+  	return array[0];
+
+  // else array has multiple elements
+  } else {
+    // make a copy of the array
+    var copy = array.slice();
+    // use pop on the copy, store in current 
+    var current = copy.pop();
+    // if popped element is an array
+    if (Array.isArray(current)) {
+      // call arraySum and set to currrent
+      current = arraySum(current);
+    }
+    // if current is a number, don't need to do anything to it..
+    // return result of adding current to arraySum of the copy
+    return current + arraySum(copy);
+  }
 };
 
 // 4. Check if a number is even.
