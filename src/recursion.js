@@ -33,7 +33,7 @@ var sum = function(array) {
     // return 0
     return 0;
 
-  // if array length is 1  
+  // if array length is 1  -- base case
   } else if (array.length === 1) {  
     // return that element
     return array[0];
@@ -62,7 +62,7 @@ var arraySum = function(array) {
     // return call to arraySum of the element
     return arraySum(array[0]);
 
-  // if array length is one and it's a number
+  // if array length is one and it's a number -- base case
   } else if (array.length === 1) {
   	// else return the element
   	return array[0];
@@ -86,12 +86,12 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-  // if n is 0
+  // if n is 0 -- base case for true
   if (n === 0) {
     // return true
     return true;
 
-  // if n is 1
+  // if n is 1  -- base case for false
   } else if (n === 1) {
     // return false
     return false;l
@@ -112,6 +112,24 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  // if n is 0 or 1
+  if ((n === 0) || (n === 1)) {
+    // return 0
+    return 0;
+
+  // if n is negative
+  } else if (n < 0) {
+  	// get the result for n being positive
+    var absValueResult = sumBelow(Math.abs(n));
+    // return the negative of the result
+    return -1 * absValueResult;
+
+  // else
+  } else {
+    // return sumBelow of n-1 + n-1
+    return  n - 1 + sumBelow(n - 1);
+  }
+
 };
 
 // 6. Get the integers within a range (x, y).
