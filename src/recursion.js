@@ -297,6 +297,20 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+  var isXPositive = (x > 0);
+  var isYPositive = (y > 0);
+
+  if (x === 0 || y === 0) {
+  	return 0;
+  } else if (isYPositive) {
+  	return x + multiply (x, y - 1);
+  } else if (!isXPositive && !isYPositive) {
+    var posX = x - x - x;
+    var posY = y - y - y;
+  	return multiply(posX, posY);
+  } else {
+  	return multiply(y, x);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
