@@ -215,10 +215,50 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if (string === '') {
+    return '';
+  } else if (string.length === 1) {
+    return string;
+  } else {
+    // define result string as last letter in string
+    var reversal = string[string.length-1];
+
+    // slice string using current length - 1 as ending index
+    // recursively call using the slice
+    // concatinate result to end of result string
+    // return result
+    return reversal + reverse(string.slice(0, string.length-1));
+  }
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  // if the string is empy, return false by definition
+  if (string === '') {
+  	return false;
+  // if the string is one letter -- first true base case
+  } else if (string.length === 1) {
+    // return true
+    return true;
+  // if the string is two letters
+  } else if (string.length === 2) {
+    // if they match, return true -- other true base casee
+    if (string[0].toUpperCase() === string[1].toUpperCase()) {
+      return true;
+    // else return false  -- false base case
+    } else {
+      return false;
+    }
+  // if the first and last letters match
+  } else if (string[0].toUpperCase() === string[string.length - 1].toUpperCase()) {
+    // slice string to exclude first and last letters
+    var withoutEnds = string.slice(1, string.length - 1);
+    // recursively call with sliced string
+    return palindrome(withoutEnds);
+  // if the first and last letters do not match, return false -- last false base case
+  } else {
+  	return false;
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
